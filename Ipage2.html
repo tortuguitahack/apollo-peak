@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="A product of emergent.sh" />
+    <!-- Opcional: añade una meta para inyectar la clave desde el servidor -->
+    <!-- <meta name="posthog-api-key" content="your_key_here" /> -->
     <title>Emergent | Fullstack App</title>
 
-    <!-- Favicon y manifest (añade manifest.json y favicon.ico en /public si no existen) -->
     <link rel="icon" href="/favicon.ico" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Script principal de Emergent -->
     <script src="https://assets.emergent.sh/scripts/emergent-main.js" defer></script>
 
-    <!-- Estilos para el badge (separados del HTML para mejor mantenimiento) -->
     <style>
-        /* Estilos específicos para el badge emergent */
         #emergent-badge {
             display: flex !important;
             align-items: center !important;
@@ -47,10 +45,8 @@
         }
     </style>
 
-    <!-- Cargar scripts de edición visual / Tailwind únicamente cuando estemos en iframe (no bloquear UI) -->
     <script>
         if (window.self !== window.top) {
-            // Debug monitor (no crítico)
             (function() {
                 var s = document.createElement('script');
                 s.src = 'https://assets.emergent.sh/scripts/debug-monitor.js';
@@ -59,7 +55,6 @@
                 document.head.appendChild(s);
             })();
 
-            // Cargar Tailwind desde CDN (solo en contextos de edición visual)
             (function() {
                 window.tailwind = window.tailwind || {};
                 tailwind.config = { corePlugins: { preflight: false } };
@@ -71,7 +66,6 @@
         }
     </script>
 
-    <!-- Bundle de la app (si existe). Mantener defer para no bloquear el parseo -->
     <script defer src="/static/js/bundle.js"></script>
 </head>
 <body>
@@ -81,7 +75,6 @@
 
     <div id="root" role="main" aria-live="polite"></div>
 
-    <!-- Emergent badge: seguro y accesible -->
     <a id="emergent-badge"
        href="https://app.emergent.sh/?utm_source=emergent-badge"
        target="_blank"
@@ -91,10 +84,12 @@
         <p>Made with Emergent</p>
     </a>
 
-    <!-- PostHog analytics (mantener la clave pública si la necesitas; opcional si no quieres tracking) -->
     <script>
-        // Snippet asíncrono para inicializar posthog sin bloquear
-        (function (window, document, posthogVar) {
+        // Inicialización asíncrona y anonimizada de PostHog.
+        // Reemplazamos la clave pública por un placeholder y preferimos inyectarla desde:
+        //  - una meta tag <meta name="posthog-api-key" content="...">
+        //  - o desde una variable de entorno en el servidor (renderizado).
+        (function (window, document) {
             window.posthog = window.posthog || [];
             if (window.posthog.__SV) return;
             window.posthog.__SV = 1;
@@ -115,30 +110,40 @@
             script.type = "text/javascript";
             script.async = true;
             script.crossOrigin = "anonymous";
-            // Use the hosted assets for posthog; this URL is what your previous snippet used
             script.src = "https://us-assets.i.posthog.com/static/array.js";
             var first = document.getElementsByTagName("script")[0];
             first.parentNode.insertBefore(script, first);
+        })(window, document);
 
-        })(window, document, "posthog");
+        // Obtener la clave PostHog desde meta tag o placeholder.
+        (function () {
+            var meta = document.querySelector('meta[name="posthog-api-key"]');
+            var keyFromMeta = meta ? meta.content.trim() : '';
+            // Placeholder visible en el archivo: replace_me_with_posthog_key
+            var placeholder = "replace_me_with_posthog_key";
 
-        // Inicialización (clave pública visible en el repo; si no quieres exponerla, mueve esto a servidor)
-        try {
-            posthog.init("phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE", {
-                api_host: "https://us.i.posthog.com",
-                person_profiles: "identified_only" // 'always' también es una opción
-            });
-        } catch (e) {
-            // No romper la app si analytics falla
-            console.warn("posthog init failed", e);
-        }
+            var phKey = keyFromMeta || placeholder;
+
+            try {
+                if (phKey && phKey !== placeholder) {
+                    posthog.init(phKey, {
+                        api_host: "https://us.i.posthog.com",
+                        person_profiles: "identified_only"
+                    });
+                } else {
+                    // No inicializar si no hay clave real.
+                    console.info("PostHog not initialized: API key not provided (use meta[name=\"posthog-api-key\"])");
+                }
+            } catch (e) {
+                console.warn("posthog init failed", e);
+            }
+        })();
     </script>
 
-    <!-- Sugerencias adicionales:
-         1) Añade /manifest.json y /favicon.ico a tu carpeta public si todavía no existen.
-         2) Considera mover claves sensibles/configs fuera del HTML.
-         3) Agrega SRI (integrity) y crossorigin a scripts críticos si tienes las sumas.
-         4) Revisa /static/js/bundle.js: si es parte del build, mantenlo; si no existe, quita la referencia.
+    <!-- Notas:
+         - Añade /manifest.json y /favicon.ico en public si no existen.
+         - Para producción, inyecta la clave real desde el servidor via meta tag o configuración.
+         - Considera mover analytics al servidor o usar variables de entorno en build.
     -->
 </body>
 </html>

@@ -3,101 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Apollo Peak IA Starter Pack – 10 workflows premium + bot crypto por solo $9.99. Gana ingresos pasivos reales HOY. Oferta limitada.">
-  <meta name="keywords" content="workflows IA, n8n, crypto bot, ingresos pasivos, automatización 2025">
-  <title>Apollo Peak | Workflows IA Premium – $9.99 Flash Sale</title>
+  <meta name="description" content="Apollo Peak: 1000 workflows IA premium para monetización crypto, affiliates. Precios $4.99-9.99. Bundles $49. Gana $10K/mes pasivo. Global sales.">
+  <title>Apollo Peak - Workflows IA Premium Global</title>
   <script src="https://js.stripe.com/v3/"></script>
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(to bottom, #0f172a, #1e293b); color: white; }
-    header { background: #0f172a; padding: 20px; text-align: center; }
-    .hero { background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 80px 20px; text-align: center; }
-    .hero h1 { font-size: 3rem; margin: 0; }
-    .hero p { font-size: 1.5rem; margin: 20px 0; }
-    .urgency { color: #fbbf24; font-weight: bold; font-size: 1.8rem; }
-    .cta { background: #10b981; color: white; padding: 20px 40px; font-size: 1.8rem; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 10px 30px rgba(16,185,129,0.5); transition: transform 0.3s; }
-    .cta:hover { transform: scale(1.1); }
-    .testimonials { padding: 60px 20px; background: #1e293b; text-align: center; }
-    .testimonial { max-width: 600px; margin: 20px auto; font-style: italic; }
-    .products { padding: 60px 20px; text-align: center; }
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-    .product { background: #334155; padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-    .price { font-size: 2.5rem; color: #10b981; font-weight: bold; }
-    .buy-btn { background: #f59e0b; color: black; padding: 15px 30px; border: none; border-radius: 8px; font-size: 1.2rem; cursor: pointer; margin-top: 20px; }
-    footer { background: #0f172a; padding: 40px; text-align: center; }
-    .social-icons a { margin: 0 15px; }
-    .sticky-cta { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #ef4444; color: white; padding: 15px 30px; border-radius: 50px; font-size: 1.2rem; box-shadow: 0 10px 30px rgba(239,68,68,0.5); z-index: 1000; animation: pulse 2s infinite; }
-    @keyframes pulse { 0% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.05); } 100% { transform: translateX(-50%) scale(1); } }
+    body { font-family: 'Arial'; margin: 0; padding: 0; background: #f4f4f4; }
+    header { background: #007bff; color: white; padding: 20px; text-align: center; }
+    .hero { background: #e3f2fd; padding: 50px; text-align: center; }
+    .cta { background: #ffcc00; color: black; padding: 15px 30px; font-size: 20px; border: none; cursor: pointer; }
+    .products { padding: 40px; text-align: center; }
+    .product { border: 1px solid #ddd; padding: 20px; margin: 10px; display: inline-block; width: 30%; box-sizing: border-box; }
+    footer { background: #333; color: white; padding: 20px; text-align: center; }
+    .social { margin: 10px; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Apollo Peak</h1>
-    <p>Workflows IA Premium para Ingresos Pasivos</p>
+    <h1>Apollo Peak - Workflows IA Premium</h1>
+    <p>1000 workflows para monetización crypto, affiliates. $4.99-9.99. Bundles $49. Gana $10K/mes!</p>
   </header>
 
   <section class="hero">
-    <h1>¡FLASH SALE 48H: Solo $9.99!</h1>
-    <p class="urgency">¡ÚLTIMOS SPOTS! Precio normal $497</p>
-    <p>10 workflows n8n premium + bot crypto + prompts virales<br>Testimonial: "Mi primer $1K en semana 1" – Cliente real</p>
-    <button class="cta" id="checkout-btn">COMPRAR AHORA $9.99</button>
-    <p style="margin-top: 30px; font-size: 1.2rem;">Pago seguro con Stripe • Entrega instantánea</p>
-  </section>
-
-  <section class="testimonials">
-    <h2>Lo que dicen nuestros clientes</h2>
-    <div class="testimonial">"Recuperé la inversión en 5 días. Los workflows son oro puro." – Carlos M.</div>
-    <div class="testimonial">"El bot crypto ya me dio $800 pasivo. Increíble." – Laura G.</div>
-    <div class="testimonial">"Fácil de usar, resultados reales. 100% recomendado." – Andrés R.</div>
+    <h2>Transforma Tu Vida con IA</h2>
+    <p>Monetiza global en 30 min. Oferta flash!</p>
+    <button class="cta" id="checkout-btn">Comprar Starter Pack $9.99</button>
   </section>
 
   <section class="products">
-    <h2>Lo que incluye tu Starter Pack</h2>
-    <div class="product-grid">
-      <div class="product">
-        <h3>10 Workflows n8n Premium</h3>
-        <p>Automatización viral, affiliates, content IA.</p>
-        <div class="price">$9.99</div>
-        <button class="buy-btn" onclick="buyNow()">Comprar Pack Completo</button>
-      </div>
-      <div class="product">
-        <h3>Bot Crypto Básico</h3>
-        <p>Predicciones + swaps auto KuCoin.</p>
-        <div class="price">Incluido</div>
-      </div>
-      <div class="product">
-        <h3>Prompts Virales IA</h3>
-        <p>Genera content que vende solo.</p>
-        <div class="price">Incluido</div>
-      </div>
+    <h2>Top Workflows (1000+ Disponibles)</h2>
+    <div class="product">
+      <h3>Amazon Affiliate Scraper</h3>
+      <p>Scrapea y vende. $9.99</p>
+      <button onclick="buyProduct('Amazon Scraper')">Comprar</button>
     </div>
+    <!-- Agrega más con Ollama gen -->
   </section>
 
   <footer>
-    <p>© 2025 Apollo Peak – Todos los derechos reservados</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/profile.php?id=61578395339333" target="_blank">Facebook</a>
-      <a href="https://www.instagram.com/atechany/" target="_blank">Instagram</a>
-      <a href="https://dribbble.com/dihack86codev" target="_blank">Dribbble</a>
-      <a href="https://www.linkedin.com/notifications/?filter=all" target="_blank">LinkedIn</a>
-      <a href="https://www.pinterest.com/AnyTechAI/" target="_blank">Pinterest</a>
-    </div>
+    <p>Conecta:</p>
+    <a href="https://www.facebook.com/profile.php?id=61578395339333" class="social">Facebook</a>
+    <a href="https://www.instagram.com/atechany/" class="social">Instagram</a>
+    <a href="https://dribbble.com/dihack86codev" class="social">Dribbble</a>
+    <a href="https://www.linkedin.com/notifications/?filter=all" class="social">LinkedIn</a>
+    <a href="https://www.pinterest.com/AnyTechAI/" class="social">Pinterest</a>
   </footer>
 
-  <button class="sticky-cta" id="sticky-checkout">¡COMPRA YA $9.99 ANTES QUE SUBA!</button>
-
   <script>
-    const stripe = Stripe('pk_live_51ST9cH4YMUnMEYPN03U7ZKjyl1dbwFhksTUTbPEk6LBxblOFlhLSxgYY6zcUk5tnp5BBQYpjjSInzKpUNSlxH8gb00i4BcMyvH'); // Tu publishable key
+    const stripe = Stripe('pk_live_51ST9cH4YMUnMEYPN03U7ZKjyl1dbwFhksTUTbPEk6LBxblOFlhLSxgYY6zcUk5tnp5BBQYpjjSInzKpUNSlxH8gb00i4BcMyvH');
 
     document.getElementById('checkout-btn').addEventListener('click', () => {
-      stripe.redirectToCheckout({ sessionId: 'cs_test_xxxxxxxxxx' }); // Reemplaza con session ID real de Stripe
+      stripe.redirectToCheckout({ sessionId: 'cs_...' }); // Reemplaza con session real
     });
 
-    document.getElementById('sticky-checkout').addEventListener('click', () => {
-      stripe.redirectToCheckout({ sessionId: 'cs_test_xxxxxxxxxx' });
-    });
-
-    function buyNow() {
-      stripe.redirectToCheckout({ sessionId: 'cs_test_xxxxxxxxxx' });
+    function buyProduct(name) {
+      alert(`Comprando ${name} – Redirigiendo a Stripe...`);
+      fetch('http://localhost:5678/webhook/stripe', {method: 'POST', body: JSON.stringify({product: name})});
     }
   </script>
 </body>
